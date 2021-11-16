@@ -1,6 +1,7 @@
 package Testsuit;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -25,12 +26,20 @@ public class homework2 extends BaseClass{
         driver.findElement((By.xpath("//select[@name='DateOfBirthDay']"))).sendKeys("18");
         driver.findElement((By.xpath("//select[@name='DateOfBirthMonth']"))).sendKeys("March");
         driver.findElement((By.xpath("//select[@name='DateOfBirthYear']"))).sendKeys("1991");
-        driver.findElement((By.xpath("//input[@name='Email']"))).sendKeys("abc@yahoo.com");
+        driver.findElement((By.xpath("//input[@name='Email']"))).sendKeys("abcd@yahoo.com");
         driver.findElement((By.xpath("//input[@id='Company']"))).sendKeys("JIRA");
         driver.findElement((By.xpath("//input[@id='Newsletter']"))).click();
         driver.findElement((By.xpath("//input[@id='Password']"))).sendKeys("admin123");
         driver.findElement((By.xpath("//input[@id='ConfirmPassword']"))).sendKeys("admin123");
         driver.findElement((By.xpath("//button[@id='register-button']"))).click();
+        String expectedMessage = "Your registration completed";
+
+        WebElement message = driver.findElement(By.xpath("//div[contains(text(),'Your registration completed')]"));
+        String actualmessage = message.getText();
+
+        Assert.assertEquals("Your registration completed",expectedMessage, actualmessage);
+        System.out.println(message.getText());
+
 
 
 
